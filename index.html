@@ -1,0 +1,258 @@
+<!-- 코알라의 코알라 코 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>코알라의 FF14 일본어 노트</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Noto Sans KR", "Noto Sans JP", sans-serif;
+    background:#cfefff;
+}
+
+.menu{
+    position:sticky;
+    top:0;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:12px;
+    background:#cfefff;
+    border-bottom:2px solid #a8dcff;
+    z-index:1000;
+}
+
+.menu button{
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    background:#e8f7ff;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.menu button.active{
+    background:#8fd4ff;
+}
+
+.page{
+    display:none;
+    padding:25px;
+}
+
+.page.active{
+    display:block;
+}
+
+h1{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.sub{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.line{
+    height:2px;
+    background:#8fd4ff;
+    margin:12px 0 20px 0;
+}
+
+.row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.copy-btn{
+    padding:8px 12px;
+    border:1px solid #9fdcff;
+    background:#e8f7ff;
+    border-radius:8px;
+    cursor:pointer;
+    text-align:center;
+    line-height:1.3;
+}
+
+.kr{
+    font-weight:bold;
+}
+
+#toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#8fd4ff;
+    padding:10px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
+    z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<div id="toast">복사 완료!</div>
+
+<div class="menu">
+    <button class="active" onclick="show('recruit',this)">모집</button>
+    <button onclick="show('chat',this)">소통</button>
+    <button onclick="show('gimmick',this)">기믹 및 리딩</button>
+    <button onclick="show('term',this)">용어</button>
+    <button onclick="show('emoji',this)">이모티콘</button>
+</div>
+
+<div id="recruit" class="page active">
+<h1>모집</h1>
+<div class="row">
+    <button class="copy-btn" onclick="copy('테스트')">테스트</button>
+</div>
+</div>
+
+<div id="chat" class="page">
+<h1>소통</h1>
+
+<div class="sub">기본 인사</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('よろしくお願いします')">
+  <span class="kr">잘 부탁드립니다</span><br>
+  よろしくお願いします
+</button>
+
+<button class="copy-btn" onclick="copy('初見です、よろしくお願いします')">
+  <span class="kr">초견입니다, 잘 부탁드립니다</span><br>
+  初見です、よろしくお願いします
+</button>
+
+<button class="copy-btn" onclick="copy('改めてよろしくお願いします')">
+  <span class="kr">다시 한번 잘 부탁드립니다</span><br>
+  改めてよろしくお願いします
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('お疲れ様でした')">
+  <span class="kr">수고하셨습니다</span><br>
+  お疲れ様でした
+</button>
+
+<button class="copy-btn" onclick="copy('ありがとうございました')">
+  <span class="kr">감사했습니다</span><br>
+  ありがとうございました
+</button>
+
+<button class="copy-btn" onclick="copy('PTありがとうございました')">
+  <span class="kr">파티 감사했습니다</span><br>
+  PTありがとうございました
+</button>
+
+<button class="copy-btn" onclick="copy('テレポありがとうございました')">
+  <span class="kr">텔포 감사했습니다</span><br>
+  テレポありがとうございました
+</button>
+
+<button class="copy-btn" onclick="copy('アリポでした')">
+  <span class="kr">텔포 감사했어요</span><br>
+  アリポでした
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('おめでとうございます')">
+  <span class="kr">축하합니다</span><br>
+  おめでとうございます
+</button>
+
+<button class="copy-btn" onclick="copy('クリアおめでとうです')">
+  <span class="kr">클리어 축하합니다</span><br>
+  クリアおめでとうです
+</button>
+
+<button class="copy-btn" onclick="copy('アチブおめでとうです')">
+  <span class="kr">업적 축하해요</span><br>
+  アチブおめでとうです
+</button>
+
+</div>
+
+<div class="sub">파티 퇴장</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('すみません、抜けます')">
+  <span class="kr">죄송합니다, 빠집니다</span><br>
+  すみません、抜けます
+</button>
+
+</div>
+
+</div>
+
+<div id="gimmick" class="page">
+<h1>기믹 및 리딩</h1>
+<div class="row">
+    <button class="copy-btn" onclick="copy('테스트')">테스트</button>
+</div>
+</div>
+
+<div id="term" class="page">
+<h1>용어</h1>
+<div class="row">
+    <button class="copy-btn" onclick="copy('테스트')">테스트</button>
+</div>
+</div>
+
+<div id="emoji" class="page">
+<h1>이모티콘</h1>
+<div class="row">
+    <button class="copy-btn" onclick="copy('테스트')">테스트</button>
+</div>
+</div>
+
+<script>
+function copy(text){
+    navigator.clipboard.writeText(text);
+
+    const toast = document.getElementById("toast");
+    toast.style.opacity = "1";
+
+    setTimeout(()=>{
+        toast.style.opacity = "0";
+    },1200);
+}
+
+function show(id,btn){
+    document.querySelectorAll('.page').forEach(p=>{
+        p.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+
+    document.querySelectorAll('.menu button').forEach(b=>{
+        b.classList.remove('active');
+    });
+    btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

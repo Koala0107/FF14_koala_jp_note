@@ -42,6 +42,7 @@ body{
 .page{
     display:none;
     padding:25px;
+    padding-bottom: 60vh; 
 }
 
 .page.active{
@@ -57,6 +58,7 @@ h1{
     font-size:20px;
     font-weight:800;
     margin-bottom:8px;
+    scroll-margin-top: 115px; 
 }
 
 .line{
@@ -100,6 +102,31 @@ h1{
     transition:0.3s;
     z-index:9999;
 }
+
+.submenu{
+    display:none;
+    position:sticky;
+    top:52px;
+    background:#cfefff;
+    padding:10px 25px;
+    z-index:999;
+    border-bottom:1px solid #a8dcff;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.submenu.active{
+    display:flex;
+}
+
+.submenu button{
+    background:#56a8ff;
+    border:none;
+    border-radius:8px;
+    padding:6px 12px;
+    font-weight:bold;
+    cursor:pointer;
+}
 </style>
 </head>
 
@@ -108,11 +135,19 @@ h1{
 <div id="toast">복사 완료!</div>
 
 <div class="menu">
-    <button class="active" onclick="show('recruit',this)">모집</button>
-    <button onclick="show('chat',this)">소통</button>
+    <button id="main-btn-recruit" class="active" onclick="show('recruit',this)">모집</button>
+    <button id="main-btn-chat" onclick="show('chat',this)">소통</button>
     <button onclick="show('gimmick',this)">기믹 및 리딩</button>
     <button onclick="show('term',this)">용어</button>
     <button onclick="show('emoji',this)">이모티콘</button>
+</div>
+
+<div id="chat-menu" class="submenu">
+    <button onclick="gotoSection('greet')">기본 인사</button>
+    <button onclick="gotoSection('leave')">파티 퇴장</button>
+    <button onclick="gotoSection('afk')">자리비움</button>
+    <button onclick="gotoSection('wait')">잠수 및 재모집</button>
+    <button onclick="gotoSection('recruit-stop')">모집 불가</button>
 </div>
 
 <div id="recruit" class="page active">
@@ -120,14 +155,14 @@ h1{
 <div class="row">
     <button class="copy-btn" onclick="copy('테스트')">테스트</button>
 </div>
+
 </div>
 
 <div id="chat" class="page">
 <h1>소통</h1>
 
-<div class="sub">기본 인사</div>
+<div id="greet" class="sub">기본 인사</div>
 <div class="line"></div>
-
 <div class="row">
 
 <button class="copy-btn" onclick="copy('よろしくお願いします')">
@@ -144,11 +179,9 @@ h1{
   <span class="kr">다시 한번 잘 부탁드립니다</span><br>
   改めてよろしくお願いします
 </button>
-
 </div>
 
 <div class="row">
-
 <button class="copy-btn" onclick="copy('お疲れ様でした')">
   <span class="kr">수고하셨습니다</span><br>
   お疲れ様でした
@@ -195,17 +228,231 @@ h1{
 
 </div>
 
-<div class="sub">파티 퇴장</div>
+<div id="leave" class="sub">파티 퇴장</div>
 <div class="line"></div>
 
 <div class="row">
-
 <button class="copy-btn" onclick="copy('すみません、抜けます')">
   <span class="kr">죄송합니다, 빠집니다</span><br>
   すみません、抜けます
 </button>
 
+<button class="copy-btn" onclick="copy('抜けます、お疲れ様でした')">
+  <span class="kr">빠집니다, 수고하셨습니다</span><br>
+  抜けます、お疲れ様でした
+</button>
+
+<button class="copy-btn" onclick="copy('私も抜けます、お疲れ様でした')">
+  <span class="kr">저도 빠집니다, 수고하셨습니다</span><br>
+  私も抜けます、お疲れ様でした
+</button>
+
 </div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('ちょっと急用ができたので抜けます')">
+<span class="kr">급한 일이 생겨서 빠집니다</span><br>
+ちょっと急用ができたので抜けます
+</button>
+
+<button class="copy-btn" onclick="copy('睡魔がきたので抜けます')">
+<span class="kr">졸음이 와서 빠집니다</span><br>
+睡魔がきたので抜けます
+</button>
+
+<button class="copy-btn" onclick="copy('時間きついので抜けます')">
+<span class="kr">시간이 부족해서 빠집니다</span><br>
+時間きついので抜けます
+</button>
+
+<button class="copy-btn" onclick="copy('呼ばれてしまったので抜けます')">
+<span class="kr"><span style="font-size:12px; color:#888;">(친구,고정,공대 등)</span> 불려버렸기 때문에 빠집니다</span><br>
+呼ばれてしまったので抜けます
+</button>
+
+</div>
+
+<div id="afk" class="sub">자리비움</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('ちょっと離席します')">
+<span class="kr">잠깐 자리를 비울게요</span><br>
+ちょっと離席します
+</button>
+
+<button class="copy-btn" onclick="copy('5分ほど離席します')">
+<span class="kr">5분 정도 자리를 뜨겠습니다</span><br>
+5分ほど離席します
+</button>
+
+<button class="copy-btn" onclick="copy('ちょっとトイレに行ってきます')">
+<span class="kr">잠깐 화장실 다녀올게요</span><br>
+ちょっとトイレに行ってきます
+</button>
+
+<button class="copy-btn" onclick="copy('私も行ってきます')">
+<span class="kr">저도 다녀오겠습니다</span><br>
+私も行ってきます
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('トイレ行ってきていいですか')">
+<span class="kr">화장실 다녀와도 될까요?</span><br>
+トイレ行ってきていいですか
+</button>
+
+<button class="copy-btn" onclick="copy('ありがとうです！ すぐ戻ります')">
+<span class="kr">감사합니다! 금방 다녀올게요</span><br>
+ありがとうです！ すぐ戻ります
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('いってらっしゃい')">
+<span class="kr">다녀오세요</span><br>
+いってらっしゃい
+</button>    
+
+<button class="copy-btn" onclick="copy('いってらです')">
+<span class="kr">다녀오세요</span><br>
+いってらです
+</button>
+
+<button class="copy-btn" onclick="copy('戻りました')">
+<span class="kr">돌아왔습니다</span><br>
+戻りました
+</button>
+
+<button class="copy-btn" onclick="copy('もどりです')">
+<span class="kr">돌아왔습니다</span><br>
+もどりです
+</button>
+
+<button class="copy-btn" onclick="copy('おかえりなさい')">
+<span class="kr">어서오세요</span><br>
+おかえりなさい
+</button>
+
+<button class="copy-btn" onclick="copy('おかえりです')">
+<span class="kr">어서오세요</span><br>
+おかえりです
+</button>
+
+<button class="copy-btn" onclick="copy('おかです')">
+<span class="kr">어서오세요</span><br>
+おかです
+</button>
+
+</div>
+
+<div id="wait" class="sub">잠수 및 재모집</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('ちょっと待ちましょう')">
+<span class="kr">잠깐 기다립시다</span><br>
+ちょっと待ちましょう
+</button>
+
+<button class="copy-btn" onclick="copy('少しお待ちを')">
+<span class="kr">조금만 대기를</span><br>
+少しお待ちを
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('？さん離席중인가요？')">
+<span class="kr"><span style="font-size:12px; color:#888;">(직업)</span>씨 자리를 비우셨나요?</span><br>
+？さん離席中ですか？
+</button>
+
+<button class="copy-btn" onclick="copy('？さんが離席ですので少々待ちください')">
+<span class="kr"><span style="font-size:12px; color:#888;">(직업)</span>씨가 자리를 비우셨기 때문에 잠시 기다려주세요</span><br>
+？さんが離席ですので少々待ちください
+</button>
+
+<button class="copy-btn" onclick="copy('？さん準備できたら教えてください')">
+<span class="kr"><span style="font-size:12px; color:#888;">(직업)</span>씨 준비되면 알려주세요</span><br>
+？さん準備できたら教えてください
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('？分までに帰ってこなければ再募集します')">
+<span class="kr">?분까지 돌아오지 않으면 재모집 하겠습니다</span><br>
+？分までに帰ってこなければ再募集します
+</button>
+
+<button class="copy-btn" onclick="copy('再募集します')">
+<span class="kr">재모집 하겠습니다</span><br>
+再募集します
+</button>
+
+</div>
+
+<div id="recruit-stop" class="sub">모집 불가</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('なかなか集まらないですね')">
+<span class="kr">좀처럼 모이질 않네요</span><br>
+なかなか集まらないですね
+</button>
+
+<button class="copy-btn" onclick="copy('？時までに集まったメンバーで出発でいいでしょうか')">
+<span class="kr">?시까지 모인 멤버로 출발해도 될까요?</span><br>
+？時までに集まったメンバーで出発でいいでしょうか
+</button>
+
+<button class="copy-btn" onclick="copy('？分までに来なかったら？人でいきます')">
+<span class="kr">?분까지 안 오면 ?명이서 갑니다</span><br>
+？分までに来なかったら？人でいきます
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('募集が大変そうなので解散します')">
+<span class="kr">모집이 힘들 것 같아서 해산합니다</span><br>
+募集が大変そうなので解散します
+</button>
+
+<button class="copy-btn" onclick="copy('？時までに集まらなければ解散します')">
+<span class="kr">?시까지 모이지 않으면 해산합니다</span><br>
+？時までに集まらなければ解散します
+</button>
+
+</div>
+
+<div id="afk" class="sub">파티 해산</div>
+<div class="line"></div>
+
+<div class="row">
+ 
+<button class="copy-btn" onclick="copy('解散します')">
+<span class="kr">해산합니다</span><br>
+解散します
+</button>
+
+<button class="copy-btn" onclick="copy('では解散します')">
+<span class="kr">그럼 해산하겠습니다</span><br>
+では解散します
+</button>
 
 </div>
 
@@ -252,6 +499,28 @@ function show(id,btn){
         b.classList.remove('active');
     });
     btn.classList.add('active');
+
+    const subMenu = document.getElementById('chat-menu');
+    if(id === 'chat'){
+        subMenu.classList.add('active');
+    } else {
+        subMenu.classList.remove('active');
+    }
+}
+
+function gotoSection(id){
+    const chatPage = document.getElementById('chat');
+    if (!chatPage.classList.contains('active')) {
+        const chatBtn = document.getElementById('main-btn-chat');
+        show('chat', chatBtn);
+    }
+
+    setTimeout(() => {
+        document.getElementById(id).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 50);
 }
 </script>
 

@@ -14,7 +14,6 @@ body{
     background:#cfefff;
 }
 
-/* 메인메뉴와 서브메뉴를 묶어서 상단 고정 */
 .fixed-header {
     position: sticky;
     top: 0;
@@ -46,7 +45,7 @@ body{
 
 .page{
     display:none;
-    padding: 20px 25px 60vh 25px; /* 상단 여백을 살짝 늘려 본문이 가려지지 않게 조절 */
+    padding: 20px 25px 60vh 25px;
 }
 
 .page.active{
@@ -63,7 +62,7 @@ h1{
     font-size:20px;
     font-weight:800;
     margin-bottom:8px;
-    scroll-margin-top: 160px; /* 고정된 메뉴 높이에 맞춰 스크롤 정지 위치 수정 */
+    scroll-margin-top: 160px;
 }
 
 .line{
@@ -124,6 +123,7 @@ h1{
 
 .submenu.active{
     display:flex;
+    justify-content:center;
 }
 
 .submenu button{
@@ -141,7 +141,6 @@ h1{
 
 <div id="toast">복사 완료!</div>
 
-<!-- 메뉴들을 상단 고정 상자로 묶음 -->
 <div class="fixed-header">
     <div class="menu">
         <button id="main-btn-recruit" class="active" onclick="show('recruit',this)">모집</button>
@@ -155,12 +154,14 @@ h1{
         <button onclick="gotoSection('greet')">기본 인사</button>
         <button onclick="gotoSection('leave')">파티 퇴장</button>
         <button onclick="gotoSection('afk')">자리비움</button>
-        <button onclick="gotoSection('wait')">잠수 및 재모집</button>
+        <button onclick="gotoSection('wait')">잠수 & 재모집</button>
         <button onclick="gotoSection('stop')">모집 불가</button>
         <button onclick="gotoSection('bye')">파티 해산</button>
         <button onclick="gotoSection('done')">모집 완료</button>
         <button onclick="gotoSection('danger')">문제 발생</button>
         <button onclick="gotoSection('party')">파티 진행</button>
+        <button onclick="gotoSection('last')">리트 & 라스트</button>
+        <button onclick="gotoSection('money')">용병</button>
     </div>
 </div>
 
@@ -246,6 +247,7 @@ h1{
 <div class="line"></div>
 
 <div class="row">
+
 <button class="copy-btn" onclick="copy('すみません、抜けます')">
   <span class="kr">죄송합니다, 빠집니다</span><br>
   すみません、抜けます
@@ -367,7 +369,7 @@ h1{
 
 </div>
 
-<div id="wait" class="sub">잠수 및 재모집</div>
+<div id="wait" class="sub">잠수 & 재모집</div>
 <div class="line"></div>
 
 <div class="row">
@@ -592,29 +594,6 @@ h1{
 あかだま
 </button>
 
-</div>
-
-<div class="row">
-
-<button class="copy-btn" onclick="copy('解放してなかったらしいです')">
-<span class="kr">던전 개방이 안된 것 같아요</span><br>
-解放してなかったらしいです
-</button>
-
-<button class="copy-btn" onclick="copy('解除になってないですな')">
-<span class="kr">조율해제가 되지 않았군요</span><br>
-解除になってないですな
-</button>
-
-<button class="copy-btn" onclick="copy('解除をうっかりしました')">
-<span class="kr">조율해제를 까먹었습니다</span><br>
-解除をうっかりしました
-</button>
-
-</div>
-
-<div class="row">
-
 <button class="copy-btn" onclick="copy('バグった')">
 <span class="kr">버그 났다</span><br>
 バグった
@@ -623,6 +602,39 @@ h1{
 <button class="copy-btn" onclick="copy('ラグい')">
 <span class="kr">렉걸리다</span><br>
 ラグい
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('すみません、解放してなかったらしいです')">
+<span class="kr">죄송합니다, 던전 개방이 안된 것 같아요</span><br>
+すみません、解放してなかったらしいです
+</button>
+
+<button class="copy-btn" onclick="copy('すみません、解除になってないです')">
+<span class="kr">죄송합니다, 조율해제가 되지 않았어요</span><br>
+すみません、解除になってないですな
+</button>
+
+<button class="copy-btn" onclick="copy('すみません、解除をうっかりしました')">
+<span class="kr">죄송합니다, 조율해제를 까먹었습니다</span><br>
+すみません、解除をうっかりしました
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('少しお待ちください')">
+<span class="kr">잠시만 기다려주세요</span><br>
+少しお待ちください
+</button>
+
+<button class="copy-btn" onclick="copy('すみません、◯です')">
+<span class="kr">죄송합니다, ◯입니다</span><br>
+すみません、◯です
 </button>
 
 </div>
@@ -680,13 +692,93 @@ MTさん進行をお願いできますか？
 続ける方は〇でやめる方は×でお願いします
 </button>
 
-<button class="copy-btn" onclick="copy('確認された方はレディチェお願いします')">
-<span class="kr">확인하신 분은 레디 체크 부탁드립니다</span><br>
-確認された方はレディチェお願いします
+</div>
+
+<div id="last" class="sub">리트 & 라스트</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('ワイプ')">
+<span class="kr">리트 <span style="font-size:12px; color:#888;">(재시작) </span></span><br>
+ワイプ
+</button>
+
+<button class="copy-btn" onclick="copy('わいぷ')">
+<span class="kr">리트 <span style="font-size:12px; color:#888;">(재시작) </span></span><br>
+わいぷ
+</button>
+
+<button class="copy-btn" onclick="copy('ワイプしましょう')">
+<span class="kr">리트합시다</span><br>
+ワイプしましょう
 </button>
 
 </div>
 
+<div class="row">
+
+<button class="copy-btn" onclick="copy('次ラストで')">
+<span class="kr">다음 라스트로</span><br>
+次ラストで
+</button>
+
+<button class="copy-btn" onclick="copy('ラストです')">
+<span class="kr">라스트입니다</span><br>
+ラストです
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('次ラストでよろしいでしょうか？')">
+<span class="kr">다음 라스트 해도 괜찮을까요?</span><br>
+次ラストでよろしいでしょうか？
+</button>
+
+<button class="copy-btn" onclick="copy('漏れあったら教えてください')">
+<span class="kr"><span style="font-size:12px; color:#888;">(판 수) </span>누락이 있다면 알려주세요</span><br>
+漏れあったら教えてください
+</button>
+
+</div>
+
+<div id="money" class="sub">용병</div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('リムサ天気予報士前に集合お願いします')">
+<span class="kr">림사 일기예보사 앞으로 집합 부탁드려요</span><br>
+リムサ天気予報士前に集合お願いします
+</button>
+
+<button class="copy-btn" onclick="copy('リムサモグリ前に集合お願いします')">
+<span class="kr">림사 모그리 앞으로 집합 부탁드려요</span><br>
+リムサモグリ前に集合お願いします
+</button>
+
+<button class="copy-btn" onclick="copy('ウルダエーテ前に集合お願いします')">
+<span class="kr">울다하 에테 앞으로 집합 부탁드려요</span><br>
+ウルダエーテ前に集合お願いします
+</button>
+
+</div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('報酬支払します')">
+<span class="kr"><span style="font-size:12px; color:#888;">(장소) </span>보수 지불할게요</span><br>
+報酬支払します
+</button>
+
+<button class="copy-btn" onclick="copy('先に支払して出発します')">
+<span class="kr">먼저 지불하고 출발하겠습니다</span><br>
+先に支払して出発します
+</button>
+
+</div>
 </div>
 
 <div id="gimmick" class="page">

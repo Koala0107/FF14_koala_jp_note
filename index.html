@@ -41,8 +41,7 @@ body{
 
 .page{
     display:none;
-    padding:25px;
-    padding-bottom: 60vh; 
+    padding: 10px 25px 60vh 25px;
 }
 
 .page.active{
@@ -51,7 +50,8 @@ body{
 
 h1{
     font-size:32px;
-    margin-bottom:15px;
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 .sub{
@@ -148,6 +148,7 @@ h1{
     <button onclick="gotoSection('afk')">자리비움</button>
     <button onclick="gotoSection('wait')">잠수 및 재모집</button>
     <button onclick="gotoSection('recruit-stop')">모집 불가</button>
+    <button onclick="gotoSection('recruit-stop')">파티 해산</button>
 </div>
 
 <div id="recruit" class="page active">
@@ -453,6 +454,8 @@ h1{
 <span class="kr">그럼 해산하겠습니다</span><br>
 では解散します
 </button>
+
+</div>
 
 </div>
 

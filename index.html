@@ -18,8 +18,9 @@ body{
     background: #cfefff;
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden; 
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .menu {
@@ -67,7 +68,7 @@ h1{
     font-size:20px;
     font-weight:800;
     margin-bottom:8px;
-    scroll-margin-top: 160px;
+    scroll-margin-top: 120px;
 }
 
 .line{
@@ -84,7 +85,7 @@ h1{
 }
 
 .copy-btn{
-    padding:8px 12px;
+    padding:8px 34px 8px 12px;
     border:1px solid #9fdcff;
     background:#e8f7ff;
     border-radius:8px;
@@ -145,6 +146,22 @@ html{
     scrollbar-gutter:stable;
 }
 
+.fav {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.copy-wrap{position:relative;display:inline-block}
 </style>
 </head>
 
@@ -162,6 +179,7 @@ html{
     </div>
 
     <div id="chat-menu" class="submenu">
+        <button onclick="gotoSection('favorites')">⭐즐겨찾기</button>
         <button onclick="gotoSection('greet')">기본 인사</button>
         <button onclick="gotoSection('leave')">파티 퇴장</button>
         <button onclick="gotoSection('afk')">자리비움</button>
@@ -186,6 +204,7 @@ html{
 
 <div id="chat" class="page">
 <h1>소통</h1>
+<div id="favorites" class="sub">⭐즐겨찾기</div><div class="line"></div><div class="row" id="favorites-container"></div>
 
 <div id="greet" class="sub">기본 인사</div>
 <div class="line"></div>
@@ -280,7 +299,7 @@ html{
 
 <button class="copy-btn" onclick="copy('ちょっと急用가 생긴것이므로 뺍니다')">
 <span class="kr">급한 일이 생겨서 빠집니다</span><br>
-ちょっと急用ができたので抜けます
+ちょっと急用가 생긴것이므로 뺍니다
 </button>
 
 <button class="copy-btn" onclick="copy('睡魔がきたので抜けます')">
@@ -390,16 +409,16 @@ html{
 ちょっと待ちましょう
 </button>
 
-<button class="copy-btn" onclick="copy('少しお待ちを')">
+<button class="copy-btn" onclick="copy('少しお待ち을')">
 <span class="kr">조금만 대기를</span><br>
-少しお待ちを
+少しお待ち을
 </button>
 
 </div>
 
 <div class="row">
 
-<button class="copy-btn" onclick="copy('？さん離席中ですか？')">
+<button class="copy-btn" onclick="copy('？さん離席중입니까？')">
 <span class="kr"><span style="font-size:12px; color:#888;">(직업)</span>씨 자리를 비우셨나요?</span><br>
 ？さん離席中ですか？
 </button>
@@ -454,9 +473,9 @@ html{
 
 <div class="row">
 
-<button class="copy-btn" onclick="copy('募集が大変そうなので解散します')">
+<button class="copy-btn" onclick="copy('募集가 대단히 그렇게 해산합니다')">
 <span class="kr">모집이 힘들 것 같아서 해산합니다</span><br>
-募集が大変そうなので解散します
+募集가 대단히 그렇게 해산합니다
 </button>
 
 <button class="copy-btn" onclick="copy('？時までに集まらなければ解散します')">
@@ -626,7 +645,7 @@ html{
 
 <button class="copy-btn" onclick="copy('すみません、解除になってないです')">
 <span class="kr">죄송합니다, 조율해제가 되지 않았어요</span><br>
-すみません、解除になってないですな
+すみません、解除になってないです나
 </button>
 
 <button class="copy-btn" onclick="copy('すみません、解除를 깜빡했습니다')">
@@ -695,7 +714,7 @@ MTさん進行をお願いできますか？
 
 <button class="copy-btn" onclick="copy('レディチェお願いいたします')">
 <span class="kr">레디 체크 부탁드립니다</span><br>
-レディチェお願いいたします
+레디 체크お願いいたします
 </button>
 
 <button class="copy-btn" onclick="copy('続ける方は〇でやめる方は×でお願いします')">
@@ -814,15 +833,73 @@ MTさん進行をお願いできますか？
 </div>
 
 <script>
-function copy(text){
-    navigator.clipboard.writeText(text);
+let favorites=JSON.parse(localStorage.getItem("favorites")||"[]");
+let toastTimeout; // 토스트 타이머를 제어하기 위한 변수
 
+// 공통 토스트 노출 함수
+function showToast(message) {
     const toast = document.getElementById("toast");
+    toast.textContent = message;
     toast.style.opacity = "1";
 
-    setTimeout(()=>{
+    clearTimeout(toastTimeout); // 이전에 돌고 있던 타이머가 있다면 취소
+    toastTimeout = setTimeout(() => {
         toast.style.opacity = "0";
-    },1200);
+    }, 1200);
+}
+
+function renderFavorites(){
+ const c=document.getElementById("favorites-container"); if(!c)return; c.innerHTML="";
+ 
+ favorites.forEach(id => {
+     const originalBtn = document.querySelector(`.page .copy-btn[data-fav-id="${id}"]`);
+     if (originalBtn) {
+         const cloneWrap = originalBtn.parentElement.cloneNode(true);
+         const cloneStar = cloneWrap.querySelector(".fav");
+         if(cloneStar) {
+             cloneStar.onclick = (e) => toggleFavorite(e, id);
+         }
+         c.appendChild(cloneWrap);
+     }
+ });
+ updateStars();
+}
+
+function toggleFavorite(e,id){
+    e.stopPropagation();
+    
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(x => x != id);
+        showToast("즐겨찾기가 해제되었습니다!");
+    } else {
+        favorites = [...favorites, id];
+        showToast("즐겨찾기에 추가되었습니다!");
+    }
+    
+    localStorage.setItem("favorites",JSON.stringify(favorites));
+    renderFavorites();
+}
+
+function updateStars(){
+    document.querySelectorAll(".fav").forEach(s=>{
+        s.textContent=favorites.includes(s.dataset.id)?"★":"☆";
+        s.style.color=favorites.includes(s.dataset.id)?"gold":"#999";
+    });
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+ let i=0;
+ document.querySelectorAll(".copy-btn").forEach(b=>{
+   const w=document.createElement("div");w.className="copy-wrap";b.parentNode.insertBefore(w,b);w.appendChild(b);
+   const id="fav"+(++i);b.dataset.favId=id;
+   const star=document.createElement("button");star.className="fav";star.dataset.id=id;star.onclick=(e)=>toggleFavorite(e,id);w.appendChild(star);
+ });
+ renderFavorites();
+});
+
+function copy(text){
+    navigator.clipboard.writeText(text);
+    showToast("복사 완료!");
 }
 
 function show(id,btn){

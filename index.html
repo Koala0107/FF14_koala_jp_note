@@ -1,8 +1,12 @@
+<!-- 코알라의 코알라 코 -->
+
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <title>코알라의 FF14 일본어 노트</title>
 <link rel="icon" type="image/png" href="icon.png">
+
+<!-- 디자인 -->
 
 <style>
 body{
@@ -68,7 +72,7 @@ h1{
     font-size:20px;
     font-weight:800;
     margin-bottom:8px;
-    scroll-margin-top: 120px;
+    scroll-margin-top: 200px;
 }
 
 .line{
@@ -165,34 +169,82 @@ html{
 </style>
 </head>
 
-<body>
+<body>   
 
 <div id="toast">복사 완료!</div>
+
+<!-- 디자인 끝 -->
+
+<!-- 메인 메뉴 버튼 -->
 
 <div class="fixed-header">
     <div class="menu">
         <button id="main-btn-recruit" class="active" onclick="show('recruit',this)">모집</button>
         <button id="main-btn-chat" onclick="show('chat',this)">소통</button>
         <button onclick="show('gimmick',this)">기믹 및 리딩</button>
-        <button onclick="show('term',this)">용어</button>
+        <button onclick="show('word',this)">용어</button>
         <button onclick="show('emoji',this)">이모티콘</button>
     </div>
 
+<!-- 메인 메뉴 버튼 끝 -->
+
+<!-- 소통의 서브 버튼  -->
+
     <div id="chat-menu" class="submenu">
         <button onclick="gotoSection('favorites')">⭐즐겨찾기</button>
-        <button onclick="gotoSection('greet')">기본 인사</button>
-        <button onclick="gotoSection('leave')">파티 퇴장</button>
-        <button onclick="gotoSection('afk')">자리비움</button>
+
+<button onclick="gotoSection('greet')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+<span>기본 인사</span>
+<img src="greet.png" alt="GREET" style="height: 25px; width: auto; display: block;">
+
+<button onclick="gotoSection('greet')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+<span>파티 퇴장</span>
+<img src="leave.png" alt="LEAVE" style="height: 25px; width: auto; display: block;">
+
+<button onclick="gotoSection('wait')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+<span>자리비움</span>
+<img src="wait.png" alt="WAIT" style="height: 25px; width: auto; display: block;">
+
         <button onclick="gotoSection('wait')">잠수 & 재모집</button>
+
         <button onclick="gotoSection('stop')">모집 불가</button>
+
         <button onclick="gotoSection('bye')">파티 해산</button>
+
         <button onclick="gotoSection('done')">모집 완료</button>
+
         <button onclick="gotoSection('danger')">문제 발생</button>
+        
         <button onclick="gotoSection('party')">파티 진행</button>
-        <button onclick="gotoSection('last')">리트 & 라스트</button>
-        <button onclick="gotoSection('money')">용병</button>
+
+<button onclick="gotoSection('last')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+    <span>리트 & 라스트</span>
+</button>
+
+<div style="flex-basis: 100%; height: 0;"></div>
+
+<button onclick="gotoSection('money')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+    <span>용병</span>
+    <img src="money.png" alt="MONEY" style="height: 25px; width: auto; display: block;">
+
+<button onclick="gotoSection('blue')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+    <span>청마도사</span>
+    <img src="blue.png" alt="BLUE" style="height: 25px; width: auto; display: block;">
+    
+<button onclick="gotoSection('ect')" style="display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; height: 32px; box-sizing: border-box; gap: 6px;">
+    <span style="line-height: 1; font-weight: bold; font-size: 13px;">FATE & 마물 & 특수</span>
+    <span style="display: inline-flex; align-items: center; gap: 4px;">
+        <img src="fate.png" alt="FATE" style="height: 25px; width: auto; display: block;">
+        <img src="hunt.png" alt="HUNT" style="height: 25px; width: auto; display: block;">
+        <img src="Field.png" alt="FIELD" style="height: 25px; width: auto; display: block;">
+    </span>
+</button>
     </div>
 </div>
+
+<!-- 소통의 서브 버튼 끝 -->
+
+<!-- 모집 -->
 
 <div id="recruit" class="page active">
 <h1>모집</h1>
@@ -202,11 +254,18 @@ html{
 
 </div>
 
+<!-- 모집 끝 -->
+
+<!-- 소통 -->
+
 <div id="chat" class="page">
 <h1>소통</h1>
 <div id="favorites" class="sub">⭐즐겨찾기</div><div class="line"></div><div class="row" id="favorites-container"></div>
 
-<div id="greet" class="sub">기본 인사</div>
+<div id="greet" class="sub"style="margin-top: 35px;">
+    「기본 인사」
+    <img src="greet.png" alt="GREET" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+</div>
 <div class="line"></div>
 <div class="row">
 
@@ -273,7 +332,10 @@ html{
 
 </div>
 
-<div id="leave" class="sub">파티 퇴장</div>
+<div id="leave" class="sub"style="margin-top: 35px;">
+    「파티 퇴장」
+    <img src="leave.png" alt="LEAVE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+</div>
 <div class="line"></div>
 
 <div class="row">
@@ -297,9 +359,9 @@ html{
 
 <div class="row">
 
-<button class="copy-btn" onclick="copy('ちょっと急用가 생긴것이므로 뺍니다')">
+<button class="copy-btn" onclick="copy('ちょっと急用ができたので抜けます')">
 <span class="kr">급한 일이 생겨서 빠집니다</span><br>
-ちょっと急用가 생긴것이므로 뺍니다
+ちょっと急用ができたので抜けます
 </button>
 
 <button class="copy-btn" onclick="copy('睡魔がきたので抜けます')">
@@ -319,7 +381,10 @@ html{
 
 </div>
 
-<div id="afk" class="sub">자리비움</div>
+<div id="wait" class="sub"style="margin-top: 35px;">
+    「자리비움」
+    <img src="wait.png" alt="wait" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+</div>
 <div class="line"></div>
 
 <div class="row">
@@ -399,7 +464,7 @@ html{
 
 </div>
 
-<div id="wait" class="sub">잠수 & 재모집</div>
+<div id="wait" class="sub"style="margin-top: 35px;">「잠수 & 재모집」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -409,16 +474,16 @@ html{
 ちょっと待ちましょう
 </button>
 
-<button class="copy-btn" onclick="copy('少しお待ち을')">
+<button class="copy-btn" onclick="copy('少しお待ちを')">
 <span class="kr">조금만 대기를</span><br>
-少しお待ち을
+少しお待ちを
 </button>
 
 </div>
 
 <div class="row">
 
-<button class="copy-btn" onclick="copy('？さん離席중입니까？')">
+<button class="copy-btn" onclick="copy('？さん離席中ですか？')">
 <span class="kr"><span style="font-size:12px; color:#888;">(직업)</span>씨 자리를 비우셨나요?</span><br>
 ？さん離席中ですか？
 </button>
@@ -449,7 +514,7 @@ html{
 
 </div>
 
-<div id="stop" class="sub">모집 불가</div>
+<div id="stop" class="sub"style="margin-top: 35px;">「모집 불가」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -473,9 +538,9 @@ html{
 
 <div class="row">
 
-<button class="copy-btn" onclick="copy('募集가 대단히 그렇게 해산합니다')">
+<button class="copy-btn" onclick="copy('募集が大変そうなので解散します')">
 <span class="kr">모집이 힘들 것 같아서 해산합니다</span><br>
-募集가 대단히 그렇게 해산합니다
+募集が大変そうなので解散します
 </button>
 
 <button class="copy-btn" onclick="copy('？時までに集まらなければ解散します')">
@@ -485,7 +550,7 @@ html{
 
 </div>
 
-<div id="bye" class="sub">파티 해산</div>
+<div id="bye" class="sub"style="margin-top: 35px;">「파티 해산」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -535,7 +600,7 @@ html{
 
 </div>
 
-<div id="done" class="sub">모집 완료</div>
+<div id="done" class="sub"style="margin-top: 35px;">「모집 완료」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -590,7 +655,7 @@ html{
 
 </div>
 
-<div id="danger" class="sub">문제 발생</div>
+<div id="danger" class="sub"style="margin-top: 35px;">「문제 발생」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -645,10 +710,10 @@ html{
 
 <button class="copy-btn" onclick="copy('すみません、解除になってないです')">
 <span class="kr">죄송합니다, 조율해제가 되지 않았어요</span><br>
-すみません、解除になってないです나
+すみません、解除になってないです
 </button>
 
-<button class="copy-btn" onclick="copy('すみません、解除를 깜빡했습니다')">
+<button class="copy-btn" onclick="copy('すみません、解除をうっかりしました')">
 <span class="kr">죄송합니다, 조율해제를 까먹었습니다</span><br>
 すみません、解除をうっかりしました
 </button>
@@ -669,7 +734,7 @@ html{
 
 </div>
 
-<div id="party" class="sub">파티 진행</div>
+<div id="party" class="sub"style="margin-top: 35px;">「파티 진행」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -714,7 +779,7 @@ MTさん進行をお願いできますか？
 
 <button class="copy-btn" onclick="copy('レディチェお願いいたします')">
 <span class="kr">레디 체크 부탁드립니다</span><br>
-레디 체크お願いいたします
+レディチェお願いいたします
 </button>
 
 <button class="copy-btn" onclick="copy('続ける方は〇でやめる方は×でお願いします')">
@@ -724,7 +789,7 @@ MTさん進行をお願いできますか？
 
 </div>
 
-<div id="last" class="sub">리트 & 라스트</div>
+<div id="last" class="sub"style="margin-top: 35px;">「리트 & 라스트」</div>
 <div class="line"></div>
 
 <div class="row">
@@ -774,7 +839,10 @@ MTさん進行をお願いできますか？
 
 </div>
 
-<div id="money" class="sub">용병</div>
+<div id="money" class="sub"style="margin-top: 35px;">
+    「용병」
+<img src="money.png" alt="FATE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+</div>
 <div class="line"></div>
 
 <div class="row">
@@ -809,7 +877,46 @@ MTさん進行をお願いできますか？
 </button>
 
 </div>
+
+<div id="blue" class="sub"style="margin-top: 35px;">
+    「청마도사」
+    <img src="blue.png" alt="FATE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
 </div>
+<div class="line"></div>
+
+<div class="row">
+
+<button class="copy-btn" onclick="copy('覚えました')">
+<span class="kr"><span style="font-size:12px; color:#888;">(스킬) </span>배웠어요</span><br>
+覚えました
+</button>
+
+<button class="copy-btn" onclick="copy('覚えてません')">
+<span class="kr"><span style="font-size:12px; color:#888;">(스킬) </span>못 배웠어요</span><br>
+覚えてません
+</button>
+
+<button class="copy-btn" onclick="copy('まだです')">
+<span class="kr"><span style="font-size:12px; color:#888;">(스킬) </span>아직이요</span><br>
+まだです
+</button>
+
+</div>
+
+<div id="ect" class="sub" style="margin-top: 35px;">
+    「FATE & 마물 & 특수」
+    <img src="fate.png" alt="FATE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+    <img src="hunt.png" alt="FATE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+    <img src="Field.png" alt="FATE" style="height: 30px; vertical-align: middle; margin-right: 6px;">
+</div>
+<div class="line"></div>
+
+<div class="row">
+
+</div>
+</div>
+
+<!-- 기믹 및 리딩 -->
 
 <div id="gimmick" class="page">
 <h1>기믹 및 리딩</h1>
@@ -818,12 +925,20 @@ MTさん進行をお願いできますか？
 </div>
 </div>
 
-<div id="term" class="page">
+<!-- 기믹 및 리딩 끝 -->
+
+<!-- 용어 -->
+
+<div id="word" class="page">
 <h1>용어</h1>
 <div class="row">
     <button class="copy-btn" onclick="copy('테스트')">테스트</button>
 </div>
 </div>
+
+<!-- 용어 끝 -->
+
+<!-- 이모티콘 -->
 
 <div id="emoji" class="page">
 <h1>이모티콘</h1>
@@ -832,17 +947,20 @@ MTさん進行をお願いできますか？
 </div>
 </div>
 
+<!-- 이모티콘 끝 -->
+
+<!-- 즐겨찾기, 팝업 스크립트 -->
+
 <script>
 let favorites=JSON.parse(localStorage.getItem("favorites")||"[]");
-let toastTimeout; // 토스트 타이머를 제어하기 위한 변수
+let toastTimeout;
 
-// 공통 토스트 노출 함수
 function showToast(message) {
     const toast = document.getElementById("toast");
     toast.textContent = message;
     toast.style.opacity = "1";
 
-    clearTimeout(toastTimeout); // 이전에 돌고 있던 타이머가 있다면 취소
+    clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
         toast.style.opacity = "0";
     }, 1200);
@@ -939,3 +1057,5 @@ function gotoSection(id){
 
 </body>
 </html>
+
+<!-- 즐겨찾기, 팝업 스크립트 끝 -->
